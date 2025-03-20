@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3t1amqwblhe7"]
+
+[ext_resource type="Script" uid="uid://b1whrldpxpqay" path="res://script/main_menu.gd" id="1_3er1b"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3er1b")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 235.0
+offset_top = 34.0
+offset_right = 1424.0
+offset_bottom = 171.0
+theme_override_font_sizes/font_size = 100
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 450.0
+offset_right = 1196.0
+offset_bottom = 689.0
+theme_override_constants/separation = 20
+
+[node name="LevelButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Level"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"

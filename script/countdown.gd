@@ -1,6 +1,7 @@
 extends Label
 
 @onready var timer: Timer = $Timer
+@onready var game_over_popup = $"/root/Level1/CanvasGameOver/GameOver"
 
 var countdown: int = 10
 
@@ -19,8 +20,7 @@ func _on_timer_timeout() -> void:
 		updateLabelText()
 	else:
 		timer.stop()
-		Controller.reset_coin()
-		get_tree().reload_current_scene()
+		game_over_popup.visible = true
 
 func add_time(amount: int) -> void:
 	countdown += amount

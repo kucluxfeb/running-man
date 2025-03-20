@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://dj4sm4nitefcd"]
+[gd_scene load_steps=60 format=4 uid="uid://dj4sm4nitefcd"]
 
 [ext_resource type="Texture2D" uid="uid://d0bxchvubu4d6" path="res://assets/tileset/world_tileset.png" id="1_55use"]
 [ext_resource type="Script" uid="uid://xj7g3bghiydf" path="res://script/player.gd" id="2_s3831"]
@@ -51,6 +51,9 @@
 [ext_resource type="Script" uid="uid://l3ct7uywg7jk" path="res://script/kill_zone.gd" id="49_illia"]
 [ext_resource type="Script" uid="uid://2aimhwn1gpsg" path="res://script/camera_2d.gd" id="49_s3831"]
 [ext_resource type="PackedScene" uid="uid://d4b5tqksasbob" path="res://scene/coin.tscn" id="50_yj85f"]
+[ext_resource type="Script" uid="uid://ci7d6n471jk40" path="res://script/game_over.gd" id="52_1o5tb"]
+[ext_resource type="Script" uid="uid://b1intc5dvlh8m" path="res://script/next_level.gd" id="53_h5nn7"]
+[ext_resource type="Script" uid="uid://b3bhb15sn5pft" path="res://script/controller.gd" id="54_3k0a5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55use"]
 texture = ExtResource("1_55use")
@@ -421,6 +424,89 @@ position = Vector2(1255, 324)
 
 [node name="Coin5" parent="." instance=ExtResource("50_yj85f")]
 position = Vector2(1386, 306)
+
+[node name="CanvasGameOver" type="CanvasLayer" parent="."]
+
+[node name="GameOver" type="ColorRect" parent="CanvasGameOver"]
+visible = false
+offset_left = 718.0
+offset_top = 361.0
+offset_right = 1303.0
+offset_bottom = 681.0
+color = Color(0, 0, 0, 0.498039)
+script = ExtResource("52_1o5tb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGameOver/GameOver"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 583.0
+offset_bottom = 476.0
+
+[node name="Label" type="Label" parent="CanvasGameOver/GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasGameOver/GameOver"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 191.0
+offset_right = 432.0
+offset_bottom = 294.0
+theme_override_constants/separation = 100
+
+[node name="RestartButton" type="Button" parent="CanvasGameOver/GameOver/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="CanvasGameOver/GameOver/HBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="CanvasNextLevel" type="CanvasLayer" parent="."]
+
+[node name="NextLevel" type="ColorRect" parent="CanvasNextLevel"]
+visible = false
+offset_left = 705.0
+offset_top = 399.0
+offset_right = 1475.0
+offset_bottom = 759.0
+color = Color(0, 0, 0, 0.686275)
+script = ExtResource("53_h5nn7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasNextLevel/NextLevel"]
+layout_mode = 0
+offset_right = 769.0
+offset_bottom = 69.0
+
+[node name="Label" type="Label" parent="CanvasNextLevel/NextLevel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Level Complete"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasNextLevel/NextLevel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 227.0
+offset_right = 779.0
+offset_bottom = 356.0
+theme_override_constants/separation = 450
+
+[node name="RestartButton" type="Button" parent="CanvasNextLevel/NextLevel/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Restart"
+
+[node name="SelectLevelButton" type="Button" parent="CanvasNextLevel/NextLevel/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Select Level"
+
+[node name="Controller" type="Node2D" parent="."]
+script = ExtResource("54_3k0a5")
 
 [connection signal="timeout" from="Player/Countdown/Timer" to="Player/Countdown" method="_on_timer_timeout"]
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
